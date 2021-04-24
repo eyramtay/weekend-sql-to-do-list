@@ -11,5 +11,32 @@
 </head>
 <body>
     <header><h1>Weekend To-Do List:</h1></header>
+    <section id="addTask">
+        <h2>Add Task:</h2>
+        <input type="text" id="taskIn" placeholder="Task">
+        <input type="text" id="timeIn" placeholder="Estimated Time (minutes)">
+        <input type="text" id="assignedTo" placeholder="Assigned To Whom">
+        <input type="text" id="completedIn" placeholder="Completed?">
+        <input type="text" id="notesIn" placeholder="Notes">
+        <button type="button" id="addButton">Add Task</button>
+    </section>
+    <section>
+        <h2>All Tasks</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Task</th>
+                    <th>Estimated Time (minutes)</th>
+                    <th>Assigned To Whom</th>
+                    <th>Completed?</th>
+                    <th>Notes</th>
+                    <th>Mark Completed</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody id="viewTasks">
+            </tbody>
+        </table>
+    </section>
 </body>
 </html>
