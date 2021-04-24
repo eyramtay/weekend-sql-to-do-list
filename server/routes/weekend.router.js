@@ -47,3 +47,17 @@ router.post('/', (req,res) => {
 });
 
 // PUT
+router.put('/:id', (req, res) => {
+    let weekendId = req.params.id;
+    let sqlText = `UPDATE "weekend-list" SET "completed"='TRUE' WHERE "id"=$1`;
+    // console.log('setting up query text for put);
+
+    pool.query(sqlText, [weekendId])
+        .then((resDB) => {
+            res.sendStatus(200);
+        })
+        .catch((error) => {
+            console.log(error);
+            res.sendStatus(500);
+        });
+});
