@@ -61,3 +61,22 @@ router.put('/:id', (req, res) => {
             res.sendStatus(500);
         });
 });
+
+// DELETE
+router.delete('/:id', (req, res) => {
+    let reqId = req.params.id;
+    // console.log('Delete request id', redId);
+
+    let sqlText = 'DELETE FROM "weekend-list" WHERE "id"=$1;';
+    pool.query(sqlText, [reqId])
+        .then((result) => {
+            console.log('Task DELETED');
+            res.sendStatus(200);
+        })
+        .catch((error) => {
+            // Using a good error message to help out my future self.
+            console.log(`Error making database query ${sqlText}`, error);
+            res.sendStatus(500); 
+        });
+});
+module.exports = router;
