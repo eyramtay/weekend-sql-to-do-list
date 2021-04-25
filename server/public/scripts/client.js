@@ -100,5 +100,20 @@ function saveTask(newTask) {
 }
 
 function readyTaskHandler() {
-    
+    console.log('clicked');
+    readyTask($(this).data("id"));
 }
+
+function readyTask(readyId) {
+    $.ajax({
+        method: 'PUT',
+        url: `/weekend/${readyId}`,
+    })
+    .then(function (response) {
+        getTasks();
+    })
+    .catch(function (error) {
+        alert('error on put route client', error);
+    })
+}
+
