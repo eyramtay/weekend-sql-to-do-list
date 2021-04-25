@@ -78,10 +78,27 @@ function saveTask(newTask) {
     console.log('in saveTask', newTask);
     // ajax call to server to POST tasks
     let taskToSend = {
-            task: 'testTask',
-            estimatedTime: 'testTime',
-            assignedTo: 'testAssign',
-            notes: 'testNotes',
-            completed: 'testCompletion',
+            task: $('#taskIn').val(),
+            estimatedTime: $('#timeIn').val(),
+            assignedTo: $('#assignedTo').val(),
+            notes: $('#notesIn').val(),
+            completed: $('#completedIn').val(),
     }
+    $.ajax({
+        type: 'POST',
+        url: '/weekend',
+        data: taskToSend
+    })
+    .then(function (response) {
+        $('#taskIn').val(''),
+        $('#timeIn').val(''),
+        $('#assignedTo').val(''),
+        $('#notesIn').val(''),
+        $('#completedIn').val(''),
+        getTasks();
+    });
+}
+
+function readyTaskHandler() {
+    
 }
