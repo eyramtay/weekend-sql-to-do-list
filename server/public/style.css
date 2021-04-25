@@ -1,3 +1,16 @@
 body {
     background-color: antiquewhite;
+}    
+
+/* #fadeImage {
+    opacity: 0.6;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: auto;
 }
+
+.noFade {
+    color: black;
+} */
