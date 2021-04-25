@@ -25,15 +25,15 @@ function clickListener() {
         saveTask(taskToSend);
     });
     // call saveTask with new object
-    $('#viewTask').on('click', '.readyButton', readyTaskHandler);
-    $('#viewTask').on('click', '.deleteButton', deleteTaskHandler);
+    $('#viewTasks').on('click', '.readyButton', readyTaskHandler);
+    $('#viewTasks').on('click', '.deleteButton', deleteTaskHandler);
 }
 
 
 function getTasks() {
     console.log('in getTask');
     // ajax call to server to get tasks
-    $('#viewTask').empty();
+    $('#viewTasks').empty();
     $.ajax({
         type: 'GET',
         url: '/weekend'
@@ -47,7 +47,7 @@ function getTasks() {
 function renderTasks(response) {
     for (let i = 0; i < response.length; i++) {
         if (response[i].completed == true) {
-            $('#viewTask').append(`
+            $('#viewTasks').append(`
             <tr>
                 <td>${response[i].task}</td>
                 <td>${response[i].estimated_time}</td>
@@ -59,7 +59,7 @@ function renderTasks(response) {
             </tr>
             `);
         } else {
-            $('#viewTask').append(`
+            $('#viewTasks').append(`
             <tr>
                 <td>${response[i].task}</td>
                 <td>${response[i].estimated_time}</td>
@@ -117,3 +117,19 @@ function readyTask(readyId) {
     })
 }
 
+function deleteTaskHandler() {
+    deleteTask($(this).data("id"));
+}
+
+function deleteTask(weekendId) {
+    $.ajax({
+        method: 'DELETE',
+        url: `/weekend/${weekendId}`,
+    })
+    .then(function (response) {
+        getTasks();
+    })
+    .catch(function (error) {
+        alert('Error on deleting task.', error);
+    });
+}
